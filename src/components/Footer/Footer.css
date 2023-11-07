@@ -1,0 +1,32 @@
+.footer__container {
+    background-color: #2A3439;
+    color: white;
+    padding: 40px;
+    bottom: 0;
+}
+
+.footer__content{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.footer__content p {
+    width: 100%;
+}
+
+.footer__links {
+    display: flex;
+    flex-flow: column;
+    margin: 0px 50px;
+    font-size: 30px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.footer__copyright {
+    text-align: center;
+}
