@@ -5,7 +5,7 @@ import "./Resources.css";
 
 const Resources = () => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div>

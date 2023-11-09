@@ -52,7 +52,7 @@ const Features = () => {
 
           <h2>6. Code Management</h2>
           <ul>
-              <li>Save and Organize: Save your code creations as "Pears" or code playgrounds. Access, update, and delete them
+              <li>Save and Organize: Save your code creations as code playgrounds. Access, update, and delete them
                   as needed.</li>
               <li>Notebook Access: Access and manage your saved notes for easy reference.</li>
           </ul>
