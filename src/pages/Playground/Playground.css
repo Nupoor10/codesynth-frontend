@@ -1,0 +1,38 @@
+.playground__nav__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e1e1e;
+}
+
+.playground__nav__wrapper > button {
+  border: none;
+  margin: none;
+  padding: 5px;
+  background-color: #1e1e1e;
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.editor__components {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  background-color: #000000;
+  color: white;
+}
+
+.iframe__component {
+  overflow: auto;
+}
+
+.iframe__component > iframe {
+  width: 100%;
+  border: none;
+  overflow: auto;
+}
