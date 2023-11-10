@@ -12,7 +12,7 @@ const CodeChecker = ({userCodeVal, editorLang}) => {
 
     const copyCodeToClipboard = () => {
       navigator.clipboard.writeText(codeVal);
-      toast("Copied to Clipboard");
+      toast.success("Copied to Clipboard");
     };
 
     const handleCorrectCode = async() => {

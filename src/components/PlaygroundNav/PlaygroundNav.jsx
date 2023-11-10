@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { GiTeacher } from "react-icons/gi";
+import { GiTeacher, GiNotebook } from "react-icons/gi";
 import { TbBulbFilled } from "react-icons/tb";
 import toast, { Toaster } from 'react-hot-toast';
 import Dropdown from 'react-dropdown';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import Modal from '../Modal/Modal';
 import CoderMate from '../CoderMate/CoderMate';
+import NotesGenerator from "../NotesGenerator/NotesGenerator";
 import Canvas from '../Canvas/Canvas';
 import 'react-dropdown/style.css';
 import "./PlaygroundNav.css";
@@ -104,6 +105,9 @@ const PlaygroundNav = ({htmlValue, cssValue, jsValue, title, setTitle, status, s
         {!isGuest && (
           <button onClick={() => {openModal("bot")}} className='colored__btn'>Teach Me<span><GiTeacher/></span></button>
         )}
+        {(toBeUpdated && !isGuest) && (
+          <button onClick={() => {openModal("notes")}} className='colored__btn'>DocGen<span><GiNotebook/></span></button>
+        )}
         {(toBeUpdated && !isGuest) &&(
          <button onClick={() => {openModal("board")}} className='colored__btn'>IdeaMap<span><TbBulbFilled/></span></button>
          )}
@@ -111,7 +115,9 @@ const PlaygroundNav = ({htmlValue, cssValue, jsValue, title, setTitle, status, s
         
         <Modal isOpen={modalIsOpen} closeModal={closeModal} 
         children={
-          (modalType === "bot") ? <CoderMate /> : <Canvas id={id}/>
+          (modalType === "bot") ? <CoderMate /> : 
+          (modalType === "notes") ? <NotesGenerator htmlValue={htmlValue} cssValue={cssValue} jsValue={jsValue} id={id}/> : 
+          <Canvas  id={id}/>
         }
         canvas={
           (modalType=== "board" ? "true" : "false")

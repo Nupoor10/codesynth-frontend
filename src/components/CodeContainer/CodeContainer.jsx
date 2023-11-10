@@ -34,7 +34,7 @@ const CodeContainer = ({title, id, time}) => {
     }
 
     const goToNotes = () => {
-    //    navigate to notes
+        navigate(`/notes/${id}`)
     }
 
   return (

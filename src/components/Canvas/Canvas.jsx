@@ -1,5 +1,8 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import { ReactSketchCanvas } from "react-sketch-canvas";
+import toast, { Toaster } from 'react-hot-toast';
+import { useAuthContext } from "../../hooks/useAuthContext";
 import "./Canvas.css";
 
 const Canvas = ({id}) => {
@@ -7,6 +10,7 @@ const Canvas = ({id}) => {
 
   const [image, setImage] = useState(null);
   const [ noteTitle, setNoteTitle ] = useState('Sample Note Title')
+  const { user } = useAuthContext();
 
   const exportImage = () => {
     canvas.current
@@ -25,8 +29,25 @@ const Canvas = ({id}) => {
   }
 
   const handleSaveImg = async() => {
-    console.log(image);
-    clearCanvas();
+    try {
+      const config = {
+        headers : {
+          Authorization : user?.accessToken
+        }
+      }
+      const response = await axios.post(`http://localhost:8080/api/v1/notes/add/${id}`, {
+        title : noteTitle,
+        images : image,
+        code : id
+      }, config);
+      if(response && response?.status === 201) {
+        toast.success("Note Added");
+        clearCanvas();
+      }
+    } catch(error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
   }
 
   return (
@@ -52,6 +73,10 @@ const Canvas = ({id}) => {
           <button className="monochrome__btn" onClick={handleSaveImg}>Save as a Note</button>
         </div>
         )}
+       <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
     </div>
   );
 };

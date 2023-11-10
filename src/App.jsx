@@ -8,6 +8,7 @@ import Resources from './pages/Resources/Resources';
 import UserCodes from './pages/UserCodes/UserCodes';
 import Playground from './pages/Playground/Playground';
 import Community from './pages/Community/Community';
+import Notes from './pages/Notes/Notes';
 import './App.css'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='/code' element={<Playground />}/>
           <Route path='/code/:id' element={<Playground />}/>
           <Route path='/community' element={<Community />}/>
+          <Route path='/notes/:id' element={<Notes />}/>
         </Routes>
       </Router>
     </>
