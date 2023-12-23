@@ -5,7 +5,7 @@ import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 const Footer = () => {
   return (
     <div className='footer__container'>
-      <div className='footer__content'>
+      <div className='footer__body'>
         <div className='footer__about'>
             <h1>ABOUT</h1>
             <p>

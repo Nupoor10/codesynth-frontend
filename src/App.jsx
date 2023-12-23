@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
@@ -22,11 +23,14 @@ function App() {
           <Route path='/features' element={<Features />}/>
           <Route path='/resources' element={<Resources />}/>
           <Route path='/mycodes' element={<UserCodes />}/>
-          <Route path='/code' element={<Playground />}/>
           <Route path='/code/:id' element={<Playground />}/>
           <Route path='/community' element={<Community />}/>
           <Route path='/notes/:id' element={<Notes />}/>
         </Routes>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </Router>
     </>
   )

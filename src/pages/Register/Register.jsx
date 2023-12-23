@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Footer from '../../components/Footer/Footer';
 import './Register.css'
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const Register = () => {
   const [username, setUserName] = useState('')
@@ -11,10 +12,9 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
 
-  const registerUser = async(e) => {
+  const handleRegistration = async () => {
 	try {
-		e.preventDefault();
-		const response = await axios.post("http://localhost:8080/api/v1/users/register", {
+		const response = await axios.post(`${apiURL}/users/register`, {
 			username,
 			email,
 			password
@@ -37,7 +37,7 @@ const Register = () => {
       	<div className='register__container'>
 			<h1>Register on CodeSynth</h1>
 			<div className='register__form'>
-				<form>
+				<div>
 					<input
 						className='register__input'
 						value={username}
@@ -62,16 +62,12 @@ const Register = () => {
 						placeholder="Password"
 					/>
 					<br />
-					<input type="submit" className="register__btn" value="Register" onClick={(e) => {registerUser(e)}}></input>
+					<input type="submit" className="register__btn" value="Register" onClick={handleRegistration}></input>
 					<br />
 					<h3>Already Registered? <Link to='/'>Click Here</Link> to Login</h3>
-				</form>
+				</div>
 			</div>
 		  </div>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-            />
 		<Footer />
     </div>   
   )

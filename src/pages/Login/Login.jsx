@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuthContext } from '../../hooks/useAuthContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Footer from "../../components/Footer/Footer";
 import './Login.css'
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -13,10 +14,9 @@ const Login = () => {
 
   const { dispatch } = useAuthContext();
 
-	const loginUser = async(e) => {
+	const handleLogin = async () => {
 		try {
-			e.preventDefault(); 
-			const response = await axios.post("http://localhost:8080/api/v1/users/login", {
+			const response = await axios.post(`${apiURL}/users/login`, {
 				email,
 				password
 			})
@@ -45,7 +45,7 @@ const Login = () => {
 		<div className='login__container'>
 			<h1>Login To CodeSynth</h1>
 			<div className='login__form'>
-				<form>
+				<div>
 					<input
 						className='login__input'
 						value={email}
@@ -62,15 +62,12 @@ const Login = () => {
 						placeholder="Password"
 					/>
 					<br />
-					<button type="submit" className="login__btn" onClick={(e) => {loginUser(e)}}>Login</button>
+					<button type="submit" className="login__btn" onClick={handleLogin}>Login</button>
 					<h3>Not Registered Yet? <Link to='/register'>Click Here</Link> to Register</h3>
-				</form>
+				</div>
 			</div>
 		</div>
-        <Toaster
-            position="top-center"
-            reverseOrder={false}
-            />
+        
 		<Footer />
 	</div>
   )

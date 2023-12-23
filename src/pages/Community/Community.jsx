@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import toast, {Toaster}  from 'react-hot-toast';
+import toast  from 'react-hot-toast';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import CommunityCodeCard from '../../components/CommunityCodeCard/CommunityCodeCard';
 import "./Community.css"
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const Community = () => {
     const [allCodes, setAllCodes] = useState([]);
@@ -20,7 +21,7 @@ const Community = () => {
                       Authorization: user?.accessToken
                     }
                 };
-                const response = await axios.get("http://localhost:8080/api/v1/codes/users/all", config);
+                const response = await axios.get(`${apiURL}/codes/users/all`, config);
                 if (response && response.status === 200 && response.data.codeDocs) {
                   setAllCodes(response.data.codeDocs);
                 }
@@ -44,7 +45,7 @@ const Community = () => {
           {allCodes.length > 0 ? (
             <div className='community__grid__container'>
               {allCodes.map((code) => {
-                return <CommunityCodeCard key={code._id} title={code.title} id={code._id}/>
+                return <CommunityCodeCard key={code._id} title={code.title} id={code._id} owner={code.owner.username}/>
               })}
             </div>
             ) : (
@@ -52,7 +53,6 @@ const Community = () => {
             )
           }
         </div>
-        <Toaster position='top-center' reverseOrder={false}/>
     </div>
   )
 }

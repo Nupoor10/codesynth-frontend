@@ -3,11 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsTrashFill } from "react-icons/bs";
 import { FaRegEye } from "react-icons/fa";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Modal from "../Modal/Modal";
 import FullNote from "../FullNote/FullNote";
 import "./Note.css";
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const Note = ({id, title, content, images}) => {
 
@@ -30,7 +31,7 @@ const Note = ({id, title, content, images}) => {
               Authorization : user?.accessToken
             }
           }
-        const response = await axios.delete(`http://localhost:8080/api/v1/notes/delete/${id}`, config);
+        const response = await axios.delete(`${apiURL}/notes/delete/${id}`, config);
         if(response && response.status === 200) {
             toast.success("Deleted Successfully");
         }
@@ -58,10 +59,6 @@ const Note = ({id, title, content, images}) => {
             <FullNote title={title} content={content} images={images}/>
           }
           />
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
       </div>
   )
 }

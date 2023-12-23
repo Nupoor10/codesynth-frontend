@@ -2,11 +2,11 @@ import React from "react";
 import { ImCancelCircle } from "react-icons/im";
 import "./Modal.css";
 
-const Modal = ({ isOpen, closeModal, children, canvas }) => {
+const Modal = ({ isOpen, closeModal, children }) => {
   return (
     <>
       <div className={isOpen ? "overlay" : "hidden"} onClick={closeModal}></div>
-      <div className={isOpen ? (canvas=== 'true') ? "modal canvas__modal" : "modal" : "hidden"}>
+      <div className={isOpen  ? "modal" : "hidden"}>
         <button className="closeButton" onClick={closeModal}>
           <ImCancelCircle/>
         </button>

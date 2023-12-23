@@ -35,21 +35,21 @@ const Home = () => {
         </div>
         </div>
         <div className='home__page__content'>
-          <h2>CodeSynth is a community driven AI-powered coding application designed to help developers - <span style={{color: '#ACFF33'}}>from complete newbies 
-            to seasoned pros </span> in their development journey by harnessing the power of generative AI</h2>
+          <p>CodeSynth is a community driven AI-powered coding application designed to help developers - <span style={{color: '#ACFF33'}}>from complete newbies 
+            to seasoned pros </span> in their development journey by harnessing the power of generative AI</p>
           <div className='home__page__cards'>
-            <HomeCard title={"Community 🧑‍🤝‍🧑 ➡️"}
-            text={"Explore a diverse collection of community-shared code snippets and projects on our interactive platform, where coders collaborate and showcase their work for learning and inspiration"}
-            path ={"/community"}/>
             <HomeCard title={"What is CodeSynth🤔 ➡️"}
             text={"Explore the myriad features that CodeSynth offers, gain insights into effective platform navigation, and delve into the world of cutting-edge generative AI capabilities. Our comprehensive resources will guide you every step of the way, ensuring you make the most of CodeSynth's innovative offerings"}
             path ={"/features"}/>
-            <HomeCard title={"Info Hub📑 ➡️"}
-            text={"CodeSynth was crafted to foster collaboration among coders. Dive into our Explore feature to discover the incredible code projects created by others. Embrace the collaborative spirit and explore the vibrant world of coding innovations within the CodeSynth community."}
-            path ={"/resources"}/>
             <HomeCard title={"My Codes👩‍💻 ➡️"}
             text={"Step into your personal code haven, a place where your ingenious code creations, aka 'codes' thrive. Here, you can manage your existing codes and craft fresh code playgrounds effortlessly."}
             path ={"/mycodes"}/>
+            <HomeCard title={"Info Hub📑 ➡️"}
+            text={"CodeSynth was crafted to foster collaboration among coders. Dive into our Explore feature to discover the incredible code projects created by others. Embrace the collaborative spirit and explore the vibrant world of coding innovations within the CodeSynth community."}
+            path ={"/resources"}/>
+            <HomeCard title={"Community 🧑‍🤝‍🧑 ➡️"}
+            text={"Explore a diverse collection of community-shared code snippets and projects on our interactive platform, where coders collaborate and showcase their work for learning and inspiration"}
+            path ={"/community"}/>
           </div>
         </div>
       </div>

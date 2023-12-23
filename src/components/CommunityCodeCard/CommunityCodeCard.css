@@ -9,7 +9,19 @@
 }
 
 .community__code__card > h1 {
-   height: 60%;
+   height: 55%;
+}
+
+.community__code__card > p {
+   font-size: 22px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.community__code__card > img {
+   height: 35px;
+   margin-right: 15px;
 }
 
 .view__code__btn {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useAuthContext } from '../../hooks/useAuthContext';
 import Note from "../../components/Note/Note";
 import "./Notes.css"
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const Notes = () => {
 
@@ -21,7 +22,7 @@ const Notes = () => {
                       Authorization : user?.accessToken
                     }
                   }
-                const response = await axios.get(`http://localhost:8080/api/v1/notes/fetch/all/${id}`, config);
+                const response = await axios.get(`${apiURL}/notes/fetch/all/${id}`, config);
                 if ( response && response.status === 200) {
                     setAllNotes(response?.data?.notes);
                 }
@@ -50,10 +51,6 @@ const Notes = () => {
             ) : (
                 <p>No Notes Present</p>
             )}
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
     </div>
   )
 }

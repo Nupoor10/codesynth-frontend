@@ -1,9 +1,13 @@
 .notes__page__wrapper {
     background: linear-gradient(114.3deg, rgb(19, 126, 57) 0.2%, rgb(8, 65, 91) 68.5%);
-    padding: 50px;
+    padding: 20px;
     min-height: 100vh;
     color: white;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .notes__page__header {
@@ -18,6 +22,15 @@
 
 .all__notes__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .all__notes__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
