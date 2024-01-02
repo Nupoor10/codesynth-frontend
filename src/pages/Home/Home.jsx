@@ -10,7 +10,7 @@ const Home = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const { dispatch, user } = useAuthContext();
+  const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -36,20 +36,20 @@ const Home = () => {
         </div>
         <div className='home__page__content'>
           <p>CodeSynth is a community driven AI-powered coding application designed to help developers - <span style={{color: '#ACFF33'}}>from complete newbies 
-            to seasoned pros </span> in their development journey by harnessing the power of generative AI</p>
+            to seasoned pros </span> in their development journey</p>
           <div className='home__page__cards'>
-            <HomeCard title={"What is CodeSynth🤔 ➡️"}
-            text={"Explore the myriad features that CodeSynth offers, gain insights into effective platform navigation, and delve into the world of cutting-edge generative AI capabilities. Our comprehensive resources will guide you every step of the way, ensuring you make the most of CodeSynth's innovative offerings"}
-            path ={"/features"}/>
             <HomeCard title={"My Codes👩‍💻 ➡️"}
-            text={"Step into your personal code haven, a place where your ingenious code creations, aka 'codes' thrive. Here, you can manage your existing codes and craft fresh code playgrounds effortlessly."}
+            text={"Step into your personal code haven, a place where your ingenious code creations, aka 'playgrounds' thrive. Here, you can manage your existing codes and craft fresh code playgrounds effortlessly."}
             path ={"/mycodes"}/>
             <HomeCard title={"Info Hub📑 ➡️"}
-            text={"CodeSynth was crafted to foster collaboration among coders. Dive into our Explore feature to discover the incredible code projects created by others. Embrace the collaborative spirit and explore the vibrant world of coding innovations within the CodeSynth community."}
+            text={"The right resources are instrumental in the journey of a newly started developer to master all necessary skills. Discover our specially curated resources alognwith a few beginner-friendly project ideas to get you started. CodeSynth was crafted to foster collaboration among coders"}
             path ={"/resources"}/>
-            <HomeCard title={"Community 🧑‍🤝‍🧑 ➡️"}
-            text={"Explore a diverse collection of community-shared code snippets and projects on our interactive platform, where coders collaborate and showcase their work for learning and inspiration"}
+            <HomeCard title={"Explore 🧑‍🤝‍🧑 ➡️"}
+            text={"CodeSynth was crafted to foster collaboration among coders. Dive into our Explore feature to discover the incredible code projects created by others. Embrace the collaborative spirit and explore the vibrant world of coding innovations within the CodeSynth community"}
             path ={"/community"}/>
+            <HomeCard title={"Collaborate 🤝 ➡️"}
+            text={"Unlock the power of real time collaboration via our collaborative playgrounds. Create a new room and share the room code allowing participants to join and code together for enhanced collaboration"}
+            path ={"/collab"}/>
           </div>
         </div>
       </div>

@@ -1,17 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Editor from '@monaco-editor/react';
 import { FaHtml5, FaCss3Alt } from "react-icons/fa"
 import { RiJavascriptFill } from "react-icons/ri";
+import ACTIONS from '../../constants/Actions';
 import "./CodeEditor.css"
 
-const CodeEditor = ({codeValue, setCodeValue, isGuest, editorLang}) => {
+const CodeEditor = ({codeValue, setCodeValue, isRoom, roomId, editorLang, socketRef}) => {
 
-  function handleEditorChange(value) {
+  const handleEditorChange = (value) => {
     setCodeValue(value);
+    if(socketRef?.current && isRoom && roomId) {
+      socketRef.current.emit(ACTIONS.CODE_CHANGE, {editorLang, code: value, room: roomId})
+    }
   }
 
+  useEffect(() => {
+    if (socketRef?.current && isRoom && roomId) {
+      socketRef.current.on(ACTIONS.CODE_CHANGE, ({lang, code}) => {
+        if (lang === editorLang && code !== null) {
+          setCodeValue(code);
+        }
+      });
+    }
+
+    return () => {
+        socketRef?.current?.off(ACTIONS.CODE_CHANGE);
+    };
+  }, [socketRef?.current, isRoom, roomId]);
+
   return (
-    <div className='code__editor__component' style={{pointerEvents : isGuest ? 'none' : 'auto'}}>
+    <div className='code__editor__component'>
       <div className='editor__toolbar'>
         <h5>
             {editorLang === "html" ? 
@@ -21,12 +39,10 @@ const CodeEditor = ({codeValue, setCodeValue, isGuest, editorLang}) => {
         </h5>
       </div>
       <Editor
-        readOnly={isGuest}
         defaultLanguage={editorLang}
         theme='vs-dark'
         value={codeValue}
         onChange={handleEditorChange}
-        disabled={isGuest}
       />
     </div>
   )

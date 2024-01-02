@@ -18,7 +18,6 @@ const Playground = () => {
   const [ cssValue, setCssValue] = useState('');
   const [ jsValue, setJsValue] = useState('');
   const [title, setTitle] = useState('');
-  const [isRoom, setIsRoom] = useState(false);
   const [owner, setOwner] = useState(null);
   const [isGuest, setIsGuest] = useState(false);
   const [ collapsed, setCollapsed] = useState(false);
@@ -39,7 +38,6 @@ const Playground = () => {
             setCssValue(response?.data?.codeDoc?.css);
             setJsValue(response?.data?.codeDoc?.javascript);
             setTitle(response?.data?.codeDoc?.title);
-            setIsRoom(response?.data?.codeDoc?.isRoom);
             setOwner(response?.data?.codeDoc?.owner.username)
             if(response?.data?.codeDoc?.owner?.username !== user.name) {
               setIsGuest(true);
@@ -73,7 +71,7 @@ const Playground = () => {
   return (
     <div className='playground__page__wrapper'>
       <div className='playground__nav__wrapper'>
-        <PlaygroundNav htmlValue={htmlValue} cssValue={cssValue} jsValue={jsValue} title={title} setTitle={setTitle} isRoom={isRoom} isGuest={isGuest} id={id} owner={owner}/>
+      <PlaygroundNav htmlValue={htmlValue} cssValue={cssValue} jsValue={jsValue} title={title} setTitle={setTitle} isGuest={isGuest} id={id} owner={owner}/>
         <button onClick={() => {setCollapsed(!collapsed)}}>
           {collapsed ? (<IoIosArrowDropdown />) : (<IoIosArrowDropup />)}
         </button>
@@ -85,15 +83,15 @@ const Playground = () => {
       </div>
         <div style={{display : collapsed ? 'none' : 'flex'}}>
           <div className='editor__components'>
-            <CodeEditor id="html" codeValue={htmlValue} setCodeValue={setHtmlValue} editorLang={"html"} isGuest={isGuest}/>
-            <CodeEditor id="css" codeValue={cssValue} setCodeValue={setCssValue} editorLang={"css"} isGuest={isGuest}/>
-            <CodeEditor id="js" codeValue={jsValue} setCodeValue={setJsValue} editorLang={"javascript"} isGuest={isGuest}/>
+            <CodeEditor id="html" codeValue={htmlValue} setCodeValue={setHtmlValue} editorLang={"html"} />
+            <CodeEditor id="css" codeValue={cssValue} setCodeValue={setCssValue} editorLang={"css"} />
+            <CodeEditor id="js" codeValue={jsValue} setCodeValue={setJsValue} editorLang={"javascript"} />
           </div> 
           <div className='editor__components__mobile'>
             {(container === 'html') ? 
-            <CodeEditor id="html" codeValue={htmlValue} setCodeValue={setHtmlValue} editorLang={"html"} isGuest={isGuest}/>
-            : (container === 'css') ? <CodeEditor id="css" codeValue={cssValue} setCodeValue={setCssValue} editorLang={"css"} isGuest={isGuest}/>
-            : <CodeEditor id="js" codeValue={jsValue} setCodeValue={setJsValue} editorLang={"javascript"} isGuest={isGuest}/>
+            <CodeEditor id="html" codeValue={htmlValue} setCodeValue={setHtmlValue} editorLang={"html"} />
+            : (container === 'css') ? <CodeEditor id="css" codeValue={cssValue} setCodeValue={setCssValue} editorLang={"css"} />
+            : <CodeEditor id="js" codeValue={jsValue} setCodeValue={setJsValue} editorLang={"javascript"} />
             }
           </div> 
         </div>

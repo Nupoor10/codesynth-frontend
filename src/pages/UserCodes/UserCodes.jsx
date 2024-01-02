@@ -34,6 +34,14 @@ const UserCodes = () => {
     };
   
     getAllCodes();
+
+    const interval = setInterval(() => {
+      getAllCodes();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    }
   }, [user]);  
 
   const handleCodeCreation = async() => {

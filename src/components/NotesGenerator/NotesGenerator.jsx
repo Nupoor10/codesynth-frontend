@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import "../Modal/Modal.css";
 const apiURL = import.meta.env.VITE_BACKEND_URL;
@@ -84,6 +84,7 @@ const NotesGenerator = ({htmlValue, cssValue, jsValue, id, closeModal}) => {
         readOnly
         className='text__area'
          />
+        <Toaster position='top-center'/>
     </div>
   )
 }

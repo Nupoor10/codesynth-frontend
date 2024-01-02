@@ -33,6 +33,14 @@ const Notes = () => {
         }
 
         fetchAllNotes();
+
+        const interval = setInterval(() => {
+            fetchAllNotes();
+          }, 5000);
+      
+        return () => {
+            clearInterval(interval);
+        }
     }, [id])
 
   return (

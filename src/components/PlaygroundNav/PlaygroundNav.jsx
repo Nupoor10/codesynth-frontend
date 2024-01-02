@@ -10,12 +10,11 @@ import Modal from '../Modal/Modal';
 import CoderMate from '../CoderMate/CoderMate';
 import NotesGenerator from '../NotesGenerator/NotesGenerator';
 import Canvas from '../Canvas/Canvas';
-import 'react-dropdown/style.css';
 import './PlaygroundNav.css';
 
 const apiURL = import.meta.env.VITE_BACKEND_URL;
 
-const PlaygroundNav = ({ htmlValue, cssValue, jsValue, title, setTitle, isRoom, owner, isGuest, id }) => {
+const PlaygroundNav = ({ htmlValue, cssValue, jsValue, title, setTitle, owner, isGuest, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('settings');
   const [modalType, setModalType] = useState('');
@@ -52,7 +51,7 @@ const PlaygroundNav = ({ htmlValue, cssValue, jsValue, title, setTitle, isRoom, 
             html: htmlValue,
             css: cssValue,
             javascript: jsValue,
-            isRoom,
+            isRoom: false,
           },
           config
         );
@@ -73,20 +72,20 @@ const PlaygroundNav = ({ htmlValue, cssValue, jsValue, title, setTitle, isRoom, 
     <div className="playground__controls">
       <div className="home__icon__container">
         <p>
-          <Link to={!isGuest ? '/mycodes' : '/community'} className="home__link">
+          <Link to={isGuest ? '/community' : '/mycodes'} className="home__link">
             ⚙️
           </Link>
         </p>
-        <div className="details__container">
-          <input
-            disabled={isGuest}
-            className="playground__title"
-            value={window.innerWidth < 768 ? title?.substring(0, 10) + "..." : title}
-            type="text"
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          {!isGuest && <p>{window.innerWidth < 768 ? owner?.substring(0, 10) + "..." : owner}</p>}
-        </div>
+          <div className="details__container">
+            <input
+              disabled={isGuest}
+              className="playground__title"
+              value={window.innerWidth < 768 ? title?.substring(0, 10) + "..." : title}
+              type="text"
+              onChange={(event) => setTitle(event.target.value)}
+            />
+            <p>{window.innerWidth < 768 ? owner?.substring(0, 10) + "..." : owner}</p>
+          </div>
         {!isGuest && (
           <button onClick={saveCode} className="colored__btn">
             <FaRegSave />
@@ -142,9 +141,7 @@ const PlaygroundNav = ({ htmlValue, cssValue, jsValue, title, setTitle, isRoom, 
             <CoderMate />
           ) : modalType === 'notes' ? (
             <NotesGenerator htmlValue={htmlValue} cssValue={cssValue} jsValue={jsValue} id={id} closeModal={closeModal} />
-          ) : (
-            <Canvas id={id} closeModal={closeModal} />
-          )
+          ) : <Canvas id={id} closeModal={closeModal} />
         }
       />
     </div>
